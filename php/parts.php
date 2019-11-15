@@ -3,9 +3,9 @@
     echo '
       <header>
         <nav>
-              <a href="#">HOME</a>
-              <a href="#">PREGUNTAS FRECUENTES</a>
-              <a href="#">REGISTRO</a>
+              <a href="./wisegame.php">HOME</a>
+              <a href="./faq.php">PREGUNTAS FRECUENTES</a>
+              <a href="./register.php">REGISTRO</a>
               <a href="#">LOGIN</a>
               <a href="#">CONTACTO</a>
         </nav>
@@ -17,7 +17,7 @@
         </div>
         <section class="textos-header">
             <h1>Wise Game</h1>';
-  echo "
+    echo "
             <h2>$tittle</h2>
         </section>
     </header>";
