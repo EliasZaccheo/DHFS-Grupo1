@@ -1,34 +1,13 @@
 <!DOCTYPE html>
+<?php include_once("./php/parts.php") ?>
 <html lang="es" dir="ltr">
   <head>
-    <?php include_once("./php/head.php") ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <?php head_of() ?>
     <title>Wise Game</title>
-    <link rel="shortcut icon" href="img/wisegame.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/styletrivia.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <nav>
-            <a href="#">HOME</a>
-            <a href="#">PREGUNTAS FRECUENTES</a>
-            <a href="#">REGISTRO</a>
-            <a href="#">LOGIN</a>
-            <a href="#">CONTACTO</a>
-        </nav>
-        <section class="textos-header">
-            <h1>Wise Game</h1>
-            <h2>TRIVIA</h2>
-        </section>
-        <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
-                style="height: 100%; width: 100%;">
-                <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-                    style="stroke: none; fill: #fff;"></path>
-            </svg></div>
-    </header>
+    <?php header_of("TRIVIA") ?>
     <main>
         <section class="contenedor sobre-nosotros">
         <a class="boton" href="http://.com" target="_blank">PLAY</a>
@@ -66,7 +45,7 @@
                         </div>
                     </div>
                     <div class="imagen-port">
-                        <img src="img/Entretenimiento.jpg" alt="">
+                        <img src="img/entretenimiento.jpg" alt="">
                         <div class="hover-galeria">
                             <img src="img/icono1.png" alt="">
                             <p>Entretenimiento</p>
@@ -165,23 +144,7 @@
             </div>
         </section>
     </main>
-    <footer>
-        <div class="contenedor-footer">
-            <div class="content-foo">
-                <h4>Phone</h4>
-                <p>+5494226-2540</p>
-            </div>
-            <div class="content-foo">
-                <h4>Email</h4>
-                <p>wisegame.com.ar</p>
-            </div>
-            <div class="content-foo">
-                <h4>Location</h4>
-                <p>Buenos Aires, Argentina</p>
-            </div>
-        </div>
-        <h2 class="titulo-final">&copy; Wise Game | Copyright </h2>
-    </footer>
+    <?php footer_of(); ?>
 </body>
 
 </html>
