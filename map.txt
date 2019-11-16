@@ -1,10 +1,13 @@
 ./
-  wisegame.hmtl (HOME) <- Deberíamos pasarlo a .php para darle dinamismo
+  wisegame.hmtl <- Guía de diseño
+
+
+  home.php (HOME)
     formulario de LOGIN <- Podríamos hacerlo emergente
 
 
   faq.php (preguntas frecuentes)
-    formulario de CONTACTO <- podría estar al pié de la página, si las faq son desplegables. Quizá incluir un acceso por desplazamiento desde el encabezado 
+    formulario de CONTACTO <- podría estar al pié de la página, si las faq son desplegables. Quizá incluir un acceso por desplazamiento desde el encabezado
 
 
 

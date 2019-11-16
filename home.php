@@ -23,7 +23,7 @@
                     <p>XXXXXX</p>
                     <h3><span></span>xxxxx</h3>
                     <p>XXXXXX</p>
-                    </div>
+                </div>
             </div>
         </section>
         <section class="tematicas">

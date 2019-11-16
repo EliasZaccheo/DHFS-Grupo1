@@ -3,11 +3,11 @@
     echo '
       <header>
         <nav>
-              <a href="./wisegame.php">HOME</a>
+              <a href="./home.php">HOME</a>
               <a href="./faq.php">PREGUNTAS FRECUENTES</a>
               <a href="./register.php">REGISTRO</a>
               <a href="#">LOGIN</a>
-              <a href="#">CONTACTO</a>
+              <a href="./faq.php#contacto">CONTACTO</a>
         </nav>
         <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
                 style="height: 100%; width: 100%;">
