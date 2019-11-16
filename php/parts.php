@@ -2,6 +2,7 @@
   function header_of($tittle){
     echo '
       <header>
+        <a name="top-page"></a>    <!-- Ancla del formulario de contacto -->
         <nav>
               <a href="./home.php">HOME</a>
               <a href="./faq.php">PREGUNTAS FRECUENTES</a>
@@ -21,6 +22,14 @@
             <h2>$tittle</h2>
         </section>
     </header>";
+    echo '
+    <div class="container">
+      <nav class="fixed-bottom pb-2 row justify-content-end">
+        <button type="button" class="btn btn-primary col-2 col-md-1"><a href="#top-page" class="top-button">INICIO</a></button>
+
+      </nav>
+    </div>
+    ';
   }
 
   function footer_of(){
