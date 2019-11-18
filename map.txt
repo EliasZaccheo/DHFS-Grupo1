@@ -5,7 +5,7 @@
 x  home.php (HOME)
 
 
-E  faq.php (preguntas frecuentes)
+x  faq.php (preguntas frecuentes)
     formulario de CONTACTO <- podría estar al pié de la página, si las faq son desplegables. Quizá incluir un acceso por desplazamiento desde el encabezado
 
 
@@ -15,10 +15,10 @@ E  faq.php (preguntas frecuentes)
   ranking.php (ranking de usuarios)
 
 
-E  register.php (Formulario de registro) <- creo que podría ser emergente en HOME, como login. Pero para nosotros sería mas práctico separarlo
+x  register.php (Formulario de registro) <- creo que podría ser emergente en HOME, como login. Pero para nosotros sería mas práctico separarlo
 
 
   admin.php (Panel de administración y ABM)
 
 
-E login.php
+x login.php
