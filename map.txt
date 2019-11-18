@@ -2,25 +2,23 @@
   wisegame.hmtl <- Guía de diseño
 
 
-  home.php (HOME)
-    formulario de LOGIN <- Podríamos hacerlo emergente
+x  home.php (HOME)
 
 
-  faq.php (preguntas frecuentes)
+E  faq.php (preguntas frecuentes)
     formulario de CONTACTO <- podría estar al pié de la página, si las faq son desplegables. Quizá incluir un acceso por desplazamiento desde el encabezado
-
 
 
   profile.php (Perfil de usuario)
 
 
-
   ranking.php (ranking de usuarios)
 
 
-
-  register.php (Formulario de registro) <- creo que podría ser emergente en HOME, como login. Pero para nosotros sería mas práctico separarlo
-
+E  register.php (Formulario de registro) <- creo que podría ser emergente en HOME, como login. Pero para nosotros sería mas práctico separarlo
 
 
   admin.php (Panel de administración y ABM)
+
+
+E login.php

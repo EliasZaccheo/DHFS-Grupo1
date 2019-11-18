@@ -7,7 +7,7 @@
               <a href="./home.php">HOME</a>
               <a href="./faq.php">PREGUNTAS FRECUENTES</a>
               <a href="./register.php">REGISTRO</a>
-              <a href="#">LOGIN</a>
+              <a href="./login.php">LOGIN</a>
               <a href="./faq.php#contacto">CONTACTO</a>
         </nav>
         <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
@@ -24,8 +24,8 @@
     </header>";
     echo '
     <div class="container">
-      <nav class="fixed-bottom pb-2 row justify-content-end">
-        <button type="button" class="btn btn-primary col-2 col-md-1"><a href="#top-page" class="top-button">INICIO</a></button>
+      <nav class="fixed-bottom p-3 row justify-content-end">
+        <a role="button" class="btn btn-primary top-button" href="#top-page">INICIO</a>
 
       </nav>
     </div>
@@ -35,6 +35,7 @@
   function footer_of(){
     echo '
       <footer>
+          <!--
           <div class="contenedor-footer">
               <div class="content-foo">
                   <h4>Phone</h4>
@@ -49,6 +50,7 @@
                   <p>Buenos Aires, Argentina</p>
               </div>
           </div>
+          -->
           <h2 class="titulo-final">&copy; Wise Game | Copyright </h2>
       </footer>';
     }
