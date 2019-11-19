@@ -9,16 +9,16 @@ x  faq.php (preguntas frecuentes)
     formulario de CONTACTO <- podría estar al pié de la página, si las faq son desplegables. Quizá incluir un acceso por desplazamiento desde el encabezado
 
 
-  profile.php (Perfil de usuario)
+  profile.php (Perfil de usuario) Adriana
 
 
-  ranking.php (ranking de usuarios)
+  ranking.php (ranking de usuarios) Elias
 
 
 x  register.php (Formulario de registro) <- creo que podría ser emergente en HOME, como login. Pero para nosotros sería mas práctico separarlo
 
 
-  admin.php (Panel de administración y ABM)
+  admin.php (Panel de administración y ABM) José
 
 
 x login.php

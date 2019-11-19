@@ -27,21 +27,27 @@
         <br>
         <a name="contacto"></a>    <!-- Ancla del formulario de contacto -->
         <form action="validate.php" method="post" >
+          <?php OpenPlotCenterMd(6); ?>
           <h4>Formulario de contacto</h4>
-          <div class="form-group col-md-6">
+          <?php ClosePlotCenterMd(); ?>
+
+          <?php OpenPlotCenterMd(6); ?>
             <input name="contact-email" id="contact-email" type="email" class="form-control" placeholder="nombre@ejemplo.com" required>
-          </div>
-          <div class="form-group col-md-6">
+          <?php ClosePlotCenterMd(); ?>
+
+          <?php OpenPlotCenterMd(6); ?>
             <input name="contact-file" id="contact-file" type="file" class="form-control-file" >
-          </div>
-          <div class="form-group">
+          <?php ClosePlotCenterMd(); ?>
+
+          <?php OpenPlotCenterMd(6); ?>
             <textarea name="request" id="request" class="form-control" rows="3" placeholder="Comentario" required></textarea>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-10">
+          <?php ClosePlotCenterMd(); ?>
+
+          <?php OpenPlotCenterMd(6); ?>
+            <div class="form-group">
               <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
-          </div>
+          <?php ClosePlotCenterMd(); ?>
         </form>
       </section>
     </main>

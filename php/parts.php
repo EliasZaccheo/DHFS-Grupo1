@@ -75,13 +75,15 @@
   }
 
 
-  function OpenPlotCenterMd6(){
+  function OpenPlotCenterMd($col){
     echo '
     <div class="row justify-content-md-center">
-      <div class="form-group col-md-6">';
+      <div class=';
+    echo '"form-group col-md-'.$col;
+    echo '">';
   }
 
-  function closePlotCenterMd6(){
+  function closePlotCenterMd(){
     echo '
       </div>
     </div>';
