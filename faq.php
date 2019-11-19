@@ -18,13 +18,14 @@
       <br>
       <br>
       <section class="CONTACT">
-        <a name="contacto"></a>    <!-- Ancla del formulario de contacto -->
+        <a name="donde-estamos"></a>    <!-- Ancla de 'donde estamos' -->
         <div class="google-maps">
           <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d4626.520027383228!2d-57.953372836557946!3d-34.92040798308901!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1573938453425!5m2!1ses!2sar" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
         </div>
         <h6>La Plata, Argentina.</h6>
         <br>
         <br>
+        <a name="contacto"></a>    <!-- Ancla del formulario de contacto -->
         <form action="validate.php" method="post" >
           <h4>Formulario de contacto</h4>
           <div class="form-group col-md-6">

@@ -73,4 +73,17 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">';
   }
+
+
+  function OpenPlotCenterMd6(){
+    echo '
+    <div class="row justify-content-md-center">
+      <div class="form-group col-md-6">';
+  }
+
+  function closePlotCenterMd6(){
+    echo '
+      </div>
+    </div>';
+  }
 ?>
