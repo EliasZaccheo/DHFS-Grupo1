@@ -1,23 +1,8 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:wisegame.html
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-=======
->>>>>>> 4dc248d3c000f416182811542ca5f041203d5cf9
 <?php include_once("./php/parts.php") ?>
 <html lang="es" dir="ltr">
   <head>
     <?php head_of() ?>
-<<<<<<< HEAD
-=======
->>>>>>> 4dc248d3c000f416182811542ca5f041203d5cf9:home.php
->>>>>>> 4dc248d3c000f416182811542ca5f041203d5cf9
     <title>Wise Game</title>
 </head>
 
@@ -25,11 +10,7 @@
     <?php header_of("TRIVIA") ?>
     <main>
         <section class="contenedor sobre-nosotros">
-<<<<<<< HEAD
         <a class="boton" href="http://.com" target="_blank">PLAY</a>
-=======
-        <a class="boton" href="play.php" target="_blank">PLAY</a>
->>>>>>> 4dc248d3c000f416182811542ca5f041203d5cf9
             <h2 class="titulo">Únete a Wise Game, suma puntos y compite con tus amigos.</h2>
             <div class="contenedor-sobre-nosotros">
                 <img src="img/wisegame.png" alt="" class="imagen-about-us">
