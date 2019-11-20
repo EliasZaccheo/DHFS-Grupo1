@@ -10,7 +10,7 @@
     <?php header_of("TRIVIA") ?>
     <main>
         <section class="contenedor sobre-nosotros">
-        <a class="boton" href="http://.com" target="_blank">PLAY</a>
+        <a class="boton" href="play.php" target="_blank">PLAY</a>
             <h2 class="titulo">Únete a Wise Game, suma puntos y compite con tus amigos.</h2>
             <div class="contenedor-sobre-nosotros">
                 <img src="img/wisegame.png" alt="" class="imagen-about-us">
