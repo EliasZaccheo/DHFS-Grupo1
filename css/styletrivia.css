@@ -433,3 +433,13 @@ footer{
         font-size: 20px;
     }
 }
+
+.top-button{
+    color:#ffffff;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.btn-primary {
+  background-color: rgb(37, 72, 142)
+}
