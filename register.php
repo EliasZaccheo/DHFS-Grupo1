@@ -33,6 +33,11 @@
         <?php ClosePlotCenterMd(); ?>
 
         <?php OpenPlotCenterMd(6); ?>
+          <label for="profile">Fecha de nacimiento</label>
+          <input name="user-birth" id="user-birth" type="date" class="form-control"  required>
+        <?php ClosePlotCenterMd(); ?>
+
+        <?php OpenPlotCenterMd(6); ?>
           <label for="profile">Imagen de perfíl</label>
           <input name="profile-image" id="profile-image" type="file" class="form-control-file">
         <?php ClosePlotCenterMd(); ?>
