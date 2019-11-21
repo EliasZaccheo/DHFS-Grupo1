@@ -2,13 +2,14 @@
   function header_of($tittle){
     echo '
       <header>
-        <a name="top-page"></a>    <!-- Ancla del formulario de contacto -->
+        <a name="top-page"></a>    <!-- Ancla tope de página -->
         <nav>
               <a href="./home.php">HOME</a>
-              <a href="./faq.php">PREGUNTAS FRECUENTES</a>
+              <a href="./faq.php">FAQ</a>
               <a href="./register.php">REGISTRO</a>
               <a href="./login.php">LOGIN</a>
               <a href="./faq.php#contacto">CONTACTO</a>
+              <a href="./ranking.php">RANKING</a>
         </nav>
         <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
                 style="height: 100%; width: 100%;">

@@ -443,3 +443,9 @@ footer{
 .btn-primary {
   background-color: rgb(37, 72, 142)
 }
+
+.table-primary {
+  background-color: rgb(37, 72, 142);
+  color:#ffffff;
+  
+}
