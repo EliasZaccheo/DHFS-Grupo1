@@ -1,5 +1,5 @@
 <?php
-$file = "../json/users.json"
+$file = "../json/users.json";
 
 // Añade un usuario con los campos username,email,password,user-birth y profile-image (opcional la ultima)
 function addUser($user){
@@ -22,7 +22,7 @@ function addUser($user){
         "password" => password_hash($user["passwordCreate"],PASSWORD_DEFAULT),
         "user-birth" => $user["user-birth"],
         "profile-image" => $user["profile-image"]
-      }
+      
       ];
       global $file;
       file_put_contents($file,json_encode($users));
@@ -37,7 +37,7 @@ function getUsersDecode(){
   if ($fileOpen){
     $users = json_decode($fileOpen,true);}
   else{
-    $users=[][];
+    $users=[];
   }
   return $users;
 }
