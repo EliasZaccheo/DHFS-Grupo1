@@ -4,6 +4,22 @@ include_once("./php/parts.php");
 include_once("./php/abm-users.php");
 $tittle="Registro";
 
+if ($_POST) {
+  $user=[
+    "username"=>$_POST["username"],
+    "email"=>$_POST["email"],
+    "pass"=>$_POST["passwordCreate"],
+    "pass2"=>$_POST["passwordConfirm"],
+    "nacimiento"=>$_POST["user-birth"],
+    ];
+
+}
+ if ($_FILES) {
+    $user["profile-image"]=$_File["profile-image"];
+    }else{
+      $user["profile-image"]="img/userProfile/unknown.png";
+    }
+ addUser($user);
 ?>
 <html lang="es" dir="ltr">
   <head>
@@ -14,7 +30,7 @@ $tittle="Registro";
     <?php header_of($tittle) ?>
     <main class="container ">
       <section class="REGISTER ">
-        <form action="validate.php" method="post" class="container ">
+        <form action="register.php" method="post" class="container" enctype="multipart/form-data">
 
         <?php OpenPlotCenterMd(6); ?>
           <h4>Formulario de registro</h4>
