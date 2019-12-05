@@ -15,7 +15,7 @@ if ($_POST) {
 
 }
  if ($_FILES) {
-    $user["profile-image"]=$_File["profile-image"];
+    $user["profile-image"]=$_FILES["profile-image"];
     }else{
       $user["profile-image"]="img/userProfile/unknown.png";
     }
