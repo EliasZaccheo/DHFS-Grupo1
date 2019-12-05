@@ -1,3 +1,32 @@
+<?php 
+include_once("./php/abm-users.php");
+$email=" ";
+  
+$usuarios = file_get_contents("usuarios.txt");
+$usuariosarray=json_decode($usuarios,true);
+var_dump($usuariosarray);
+
+  if ($_POST){
+    if (buscarPorEmail($_POST["contact-email"])==true) {
+      $user=[
+        "email"=>$_POST["contact-email"],
+        "pregunta"=>$_POST["request"]
+      ];
+
+   
+  }
+
+   if ($_FILES){
+      $user["file"]=$_FILES["contact-file"];
+                }
+                else{$user["file"]=null;}
+    }else{
+          echo "Email incorrecto";
+          $email=$_POST["contact-email"];}
+ ?>
+
+
+
 <!DOCTYPE html>
 <?php include_once("./php/faq_functions.php")?>
 <?php include_once("./php/parts.php") ?>
@@ -26,17 +55,18 @@
         <br>
         <br>
         <a name="contacto"></a>    <!-- Ancla del formulario de contacto -->
-        <form action="validate.php" method="post" >
+        <form action="faq.php" method="post" >
           <?php OpenPlotCenterMd(6); ?>
           <h4>Formulario de contacto</h4>
           <?php ClosePlotCenterMd(); ?>
 
           <?php OpenPlotCenterMd(6); ?>
-            <input name="contact-email" id="contact-email" type="email" class="form-control" placeholder="nombre@ejemplo.com" required>
+            <input name="contact-email" id="contact-email" type="email" class="form-control" placeholder="nombre@ejemplo.com" required value="<?php echo $email; ?>">
           <?php ClosePlotCenterMd(); ?>
 
           <?php OpenPlotCenterMd(6); ?>
-            <input name="contact-file" id="contact-file" type="file" class="form-control-file" >
+            <h2>Archivo de consulta:</h2>
+            <input name="contact-file" id="contact-file" type="file" class="form-control-file">
           <?php ClosePlotCenterMd(); ?>
 
           <?php OpenPlotCenterMd(6); ?>
