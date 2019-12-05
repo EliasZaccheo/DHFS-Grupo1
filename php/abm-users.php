@@ -1,5 +1,5 @@
 <?php
-$file = "../json/users.json";
+$file = "usuarios.txt";
 
 // Añade un usuario con los campos username,email,password,user-birth y profile-image (opcional la ultima)
 function addUser($user){
@@ -8,8 +8,8 @@ function addUser($user){
         (strlen($user["username"])<50) &&
         (filter_var($user["email"],FILTER_VALIDATE_EMAIL)) &&
         (strlen($user["email"])<50) &&
-        (strlen($user["password"])<50) &&
-        (strlen($user["password"])>6) &&
+        (strlen($user["pass"])<50) &&
+        (strlen($user["pass"])>6) &&
         (checkbirth($user["user-birth"]))
       ){
       $users=getUsersDecode();
@@ -50,6 +50,17 @@ function findUserByUsername($username){
       return $user;
     }
     return null;
+  }
+}
+
+//valida que el mail pertenece a un usuario, sirve para que lo usen en todos los demas archivos
+function validateEmail($email){
+  $users=getUsersDecode();
+  foreach ($users as $user) {
+    if ($user["email"]==$email){
+      return true;
+    }
+    return false;
   }
 }
 
