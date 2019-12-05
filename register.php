@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<?php include_once("./php/parts.php") ?>
-<?php $tittle="Registro"; ?>
+<?php
+include_once("./php/parts.php");
+include_once("./php/abm.php");
+$tittle="Registro";
+
+?>
 <html lang="es" dir="ltr">
   <head>
     <?php head_of() ?>
@@ -17,11 +21,11 @@
         <?php ClosePlotCenterMd(); ?>
 
         <?php OpenPlotCenterMd(6); ?>
-          <input name="user-name" id="user-name" type="text" class="form-control" placeholder="Nombre de usuario" required>
+          <input name="username" id="username" type="text" class="form-control" placeholder="Nombre de usuario" required>
         <?php ClosePlotCenterMd(); ?>
 
         <?php OpenPlotCenterMd(6); ?>
-          <input name="register-email" id="register-email" type="email" class="form-control" placeholder="email@ejemplo.com" required>
+          <input name="email" id="email" type="email" class="form-control" placeholder="email@ejemplo.com" required>
         <?php ClosePlotCenterMd(); ?>
 
         <?php OpenPlotCenterMd(6); ?>
