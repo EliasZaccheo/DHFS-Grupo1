@@ -1,6 +1,6 @@
 <?php
 $file = "./json/users.json";
-$defaultimg= "./img/usersProfiles/unknown.png";
+$defaultimg= "img/usersProfiles/unknown.png";
 
 // Añade un usuario con los campos username,email,password,user-birth y profile-image (opcional la ultima)
 function addUser($user){
