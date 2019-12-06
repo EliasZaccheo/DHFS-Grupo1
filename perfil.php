@@ -3,7 +3,7 @@
   <title>Mi Perfil</title>
   <meta name=viewport content="width=device-width, initial-scale=0.3">
 </head>
-<a class="boton_personalizado" href="">⇦</a>
+<a class="boton_personalizado" href="home.php">⇦</a>
 <body bgcolor="#E6E6FA">
   <div class="header">
   <img
