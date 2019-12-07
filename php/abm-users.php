@@ -47,10 +47,14 @@ function findUserByUsername($username){
 //valida que el mail pertenece a un usuario, sirve para que lo usen en todos los demas archivos
 function buscarPorEmail($email) {
 $usuarios = getUsersDecode();
-  foreach ($usuariosarray as $value){
-    if($value["email"]==$email){
-      return true;}
+for ($i=0; $i < count($usuarios); $i++) { 
+   foreach ($usuarios[$i] as $key => $value){
+    if($value==$email){
+      return true;
+      break;}
     } return false;
+}
+ 
 }
 
 // Busca y retorna un usuario por email, si existe.

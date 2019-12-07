@@ -1,28 +1,30 @@
 <?php 
 include_once("./php/abm-users.php");
 $email=" ";
-  
-$usuarios = file_get_contents("usuarios.txt");
+$user=[];
+$usuarios = file_get_contents("json/users.json");
 $usuariosarray=json_decode($usuarios,true);
-var_dump($usuariosarray);
 
-  if ($_POST){
+  if ($_POST) {
     if (buscarPorEmail($_POST["contact-email"])==true) {
       $user=[
         "email"=>$_POST["contact-email"],
-        "pregunta"=>$_POST["request"]
+        "pregunta"=>$_POST["request"],
+        "imagen"=>"img/usersProfiles/unknown.png"
       ];
-
-   
+        $userQuest=file_get_contents("json/users-questions.json");
+        $userQuestArray=json_decode($userQuest,true);
+        $userQuestArray[]=$user;
+        $json=json_encode($userQuestArray);
+        FILE_PUT_CONTENTS("json/users-questions.json",$json);
+        echo "mensaje enviado";
+    }else{
+        echo "email incorrecto";
+        $email=$_POST["contact-email"];
+    }
   }
 
-   if ($_FILES){
-      $user["file"]=$_FILES["contact-file"];
-                }
-                else{$user["file"]=null;}
-    }else{
-          echo "Email incorrecto";
-          $email=$_POST["contact-email"];}
+ 
  ?>
 
 
