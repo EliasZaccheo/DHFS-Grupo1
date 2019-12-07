@@ -208,7 +208,7 @@ border-radius: 50px; /*bordes redondos*/
 .cards .card img{
     width: 100px;
     height: 100px;
-    object-fit: cover;
+    /*object-fit: cover;*/
     border: 3px solid #fff;
     border-radius: 50%;
     display: block;
@@ -331,10 +331,7 @@ footer{
 
     .cards .card{
         width: 90%;
-    }
-
-    .cards .card:first-child{
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
 
     /* servicios */

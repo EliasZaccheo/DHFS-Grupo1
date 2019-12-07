@@ -93,14 +93,14 @@
             <h2 class="titulo">Ranking de usuarios</h2>
             <div class="cards">
                 <div class="card">
-                    <img src="img/.jpg" alt="">
+                    <img src="img/usersProfiles/Melina.suarez15.jpg" alt="">
                     <div class="contenido-texto-card">
                         <h4>Name</h4>
                         <p>xxxxxxxxxxxxxxxxx</p>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="img/.jpg" alt="">
+                    <img src="img/usersProfiles/Augusto_f20.jpg" alt="">
                     <div class="contenido-texto-card">
                         <h4>Name</h4>
                         <p>XXXXXX</p>
@@ -108,7 +108,7 @@
                   </div>
 
                     <div class="card">
-                        <img src="img/.jpg" alt="">
+                        <img src="img/usersProfiles/birdperson.jpg" alt="">
                         <div class="contenido-texto-card">
                             <h4>Name</h4>
                             <p>XXXXXX</p>
