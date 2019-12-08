@@ -53,9 +53,8 @@ for ($i=0; $i < count($usuarios); $i++) {
       return true;
       break;}
     } return false;
-}
- 
-}
+  }
+ }
 
 // Busca y retorna un usuario por email, si existe.
 function findUserByEmail($email){
@@ -63,6 +62,7 @@ function findUserByEmail($email){
   foreach ($users as $user) {
     if ($user["email"]==$email){
       return $user;
+      break;
     }
     return null;
   }

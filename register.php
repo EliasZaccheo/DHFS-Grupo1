@@ -45,7 +45,7 @@ if ($_POST){
   }
 
   $username = strlen($_POST['username'])>0 ? $_POST['username'] : null;
-  $userbirth = checkbirth($_POST["user-birth"]) ? $_POST['userbirth'] : null;
+  $userbirth = checkbirth($_POST["user-birth"]) ? $_POST['user-birth'] : null;
   $email= filter_var($_POST["email"],FILTER_VALIDATE_EMAIL) ? $_POST["email"] : null;
 }
 

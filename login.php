@@ -1,3 +1,32 @@
+<?php 
+include_once("./php/abm-users.php");
+$userEmail=" ";
+
+  if ($_POST) {
+    $userEmail= $_POST["login-email"];
+    $userPass=password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $usuarios = file_get_contents("json/users.json");
+    $usuariosarray=json_decode($usuarios,true);
+    $email= $_POST["login-email"];
+
+    $user= findUserByEmail($userEmail);
+  
+    if ($user["email"]==$userEmail and $user["password"]==$userPass) {
+      session_start();
+      $_SESSION["mail"]=$userEmail;
+    }else{ echo "Email o Contraseña incorrecto";}
+
+  }
+
+
+
+
+ ?>
+
+
+
+
+
 <!DOCTYPE html>
 <?php include_once("./php/parts.php") ?>
 <?php $tittle="Ingreso"; ?>
@@ -10,13 +39,13 @@
     <?php header_of($tittle) ?>
     <main class="container">
       <section class="LOGIN">
-        <form action="validate.php" method="post" >
+        <form action="login.php" method="post" >
         <?php OpenPlotCenterMd(6); ?>
           <h4>Ingreso</h4>
         <?php ClosePlotCenterMd(); ?>
 
         <?php OpenPlotCenterMd(6); ?>
-          <input name="login-email" id="login-email" type="email" class="form-control" placeholder="email@ejemplo.com" required>
+          <input name="login-email" id="login-email" type="email" class="form-control" placeholder="email@ejemplo.com" required value=" <?php echo $userEmail ?>">
         <?php ClosePlotCenterMd(); ?>
 
         <?php OpenPlotCenterMd(6); ?>
