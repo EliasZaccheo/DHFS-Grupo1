@@ -5,6 +5,8 @@
 if(isset($_POST[ ´login-email´],$_POST[ ´password´] )){
 
 }
+
+?>
 <html lang="es" dir="ltr">
   <head>
     <?php head_of() ?>

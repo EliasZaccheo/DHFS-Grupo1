@@ -4,11 +4,11 @@ function usernameValidate($username){
   global $usernamePop;
   if ((strlen($username)<6) ||
       (strlen($username)>50)){
-    $usernamePop = "El username debe tener entre 6 y 50 caracteres.";
+    $usernamePop = dangerAlert("El username debe tener entre 6 y 50 caracteres.");
     return false;
   }else{
     if (findUserByUsername($username) !== null){
-      $usernamePop = "El username elegido ya está en uso.";
+      $usernamePop = dangerAlert("El username elegido ya está en uso.");
       return false;
     }else{
       $usernamePop = null;
@@ -20,11 +20,11 @@ function usernameValidate($username){
 function emailValidate($email){
   global $emailPop;
   if ( !(filter_var($email,FILTER_VALIDATE_EMAIL)) || (strlen($email)>100)) {
-    $emailPop = "Se requiere un email con no más de 100 caracteres.";
+    $emailPop = dangerAlert("Se requiere un email con no más de 100 caracteres.");
     return false;
   }else{
     if (findUserByEmail($email) !== null){
-      $emailPop = "Este email ya está en uso.";
+      $emailPop = dangerAlert("Este email ya está en uso.");
       return false;
     }else{
       return true;
@@ -39,11 +39,11 @@ function passwordValidate($pass1,$pass2){
   (strlen($pass1)<6) ||
   (strlen($pass2)>50) ||
   (strlen($pass2)<6)){
-    $passwordPop="La contraseña debe tener entre 6 y 50 caracteres.";
+    $passwordPop=dangerAlert("La contraseña debe tener entre 6 y 50 caracteres.");
     return false;
   }else{
     if (strcmp($pass1,$pass2)!==0){
-      $passwordPop = "Las contraseñas no coinciden";
+      $passwordPop = dangerAlert("Las contraseñas no coinciden");
       return false;
     }
     $passwordPop=null;
@@ -56,14 +56,14 @@ function validateImg($id_img){
   if ($_FILES[$id_img]["error"] === UPLOAD_ERR_OK) {
     $ext = pathinfo($_FILES[$id_img]["name"], PATHINFO_EXTENSION);
     if (($ext !== "jpg") && ($ext !== "jpeg") && ($ext !== "JPG") && ($ext !== "JPEG") && ($ext !== "png") && ($ext !== "PNG")){
-      $profileImagePop="Solo se aceptan formatos jpg, jpeg y png";
+      $profileImagePop=dangerAlert("Solo se aceptan formatos jpg, jpeg y png");
       return false;
     }else{
       $profileImagePop=null;
       return true;
     }
   }else{
-    $profileImagePop="Error al subir la imágen.";
+    $profileImagePop=dangerAlert("Error al subir la imágen.");
     return false;
   }
 }
@@ -96,6 +96,11 @@ function checkbirth($date){
   }
   $userBirthPop="Fecha inválida. $date";
   return false;
+}
+
+
+function dangerAlert($content){
+  return '<div class="alert alert-danger" role="alert">' . $content . '</div>';
 }
 
 

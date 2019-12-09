@@ -20,20 +20,17 @@ if ($_POST){
       checkbirth($_POST["user-birth"]) &&
       passwordValidate($_POST["passwordCreate"],$_POST["passwordConfirm"])
     ){
-
     $user=[
       "username" => $_POST["username"],
       "email" => $_POST["email"],
       "user-birth" => $_POST["user-birth"],
       "password" => password_hash($_POST["passwordCreate"],PASSWORD_DEFAULT)
     ];
-
     if (validateImg("profile-image")) {
       $user["profile-image"]=uploadImage("profile-image" ,$user["username"]);
     }else{
       $user["profile-image"]=$defaultimg;
     }
-
     if (addUser($user)){
       header('Location: login.php');
       exit;
