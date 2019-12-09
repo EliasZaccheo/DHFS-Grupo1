@@ -40,21 +40,19 @@ function findUserByUsername($username){
     if ($user["username"]==$username){
       return $user;
     }
-    return null;
   }
+  return null;
 }
 
 //valida que el mail pertenece a un usuario, sirve para que lo usen en todos los demas archivos
 function buscarPorEmail($email) {
-$usuarios = getUsersDecode();
-for ($i=0; $i < count($usuarios); $i++) { 
-   foreach ($usuarios[$i] as $key => $value){
-    if($value==$email){
-      return true;
-      break;}
-    } return false;
+  $usuarios = getUsersDecode();
+  foreach ($usuariosarray as $value){
+    if($value["email"]==$email){
+      return true;}
+    }
+  return false;
   }
- }
 
 // Busca y retorna un usuario por email, si existe.
 function findUserByEmail($email){
@@ -62,14 +60,10 @@ function findUserByEmail($email){
   foreach ($users as $user) {
     if ($user["email"]==$email){
       return $user;
-      break;
     }
-    return null;
   }
+  return null;
 }
 
-// Chequea la validez de una fecha. False si no es válida
-function checkbirth($date){
-  return true;
-}
+
 ?>
