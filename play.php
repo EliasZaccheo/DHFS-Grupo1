@@ -15,17 +15,20 @@
 		<div class="user">
 			<!-- usuario actual-->
 		</div>
-		
 
+		<h1 class="user-name"> HISTORIA </h1>
+		<div class="contenedor">
+		    <img src="img/historia.jpg" alt="" class="imagen-about-us" width="20%">
+			</div>
 		<div class="juego">
 
-				<?php questions($cases); ?>		
-		
+				<?php questions($cases); ?>
+
 				<div class="row">
 					<div class="col">
 						<div class="progress">
 							<div class="progress-bar" role="progressbar" style="width:75%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-								50%
+								30%
 							</div>
 							<span class="sr-only">25%</span>
 						</div>
@@ -33,8 +36,8 @@
 						<div id="countdown" class="btn-primary text-center display-4 "></div>
 						<!-- contadores echos con js y html-->
 						<br><br><br>
-					</div>		
-				</div>	
+					</div>
+				</div>
 
 		</div>
 	</div>
@@ -43,7 +46,7 @@
 	<script type="text/javascript">
 			var timeleft = 30;
 			var downloadTimer = setInterval(function(){
- 			document.getElementById("countdown").innerHTML =timeleft + "seg RESTANTES!!!! ";
+ 			document.getElementById("countdown").innerHTML =timeleft  +  "Seg Restantes!!!! ";
   			timeleft -= 1;
   				if(timeleft <= 0){
     			clearInterval(downloadTimer);
@@ -64,3 +67,17 @@
 	</script>
 </body>
 </html>
+<style>
+.user-name {
+	display: flex;
+	justify-content: space-evenly;
+  font-size: 50px;
+  margin-top: 10px;
+	color:#2e518b; // color azul//
+  }
+	.contenedor{
+	    display: flex;
+	    justify-content: space-evenly;
+	}
+
+	</style>
