@@ -82,22 +82,19 @@ function partialyOverwrite($questionId,$tag,$content) {
     return false;
   }else{
     $question[$tag] = $content;
-    $questions[$questionId]=$question;
-    global $file;
-    writeQuestions($questions);
+    totalOverwrite($questionId,$question);
     return true;
   }
 }
 
 // Sobre escribe una pregunta en particular
-function totalOverwrite($questionId){
-  $question=getQuestionById($questionId);
-  if ($question===null){
+function totalOverwrite($questionId, $question){
+  if (getQuestionById($questionId)===null){
     return false;
   }else{
-    $question[$tag] = $content;
+    $questions=getQuestionsDecode();
     $questions[$questionId]=[
-      "id" => count($questions),
+      "id" => $questionId,
       "category" => $question["category"],
       "level" => $question["level"],
       "question" => $question["question"],

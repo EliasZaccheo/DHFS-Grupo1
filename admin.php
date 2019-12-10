@@ -7,47 +7,8 @@
 include_once("./php/parts.php");
 include_once("./php/abm-questions.php");
 $tittle="Administración - ABM";
-$qId=null;
-$qCategory=null;
-$qLevel=null;
-$qQuestion=null;
-$qAnswer_1=null;
-$qAnswer_2=null;
-$qAnswer_3=null;
-$qAnswer_4=null;
-$qAnswerRight=null;
 
-if ($_POST) {
-  if (isset($_POST["category"]) &&
-    isset($_POST["level"]) &&
-    isset($_POST["question"]) &&
-    isset($_POST["answer_1"]) &&
-    isset($_POST["answer_2"]) &&
-    isset($_POST["answer_3"]) &&
-    isset($_POST["answer_4"]) &&
-    isset($_POST["answer_right"])
-  ){
-    $newQuestion=[
-      "category" => $_POST["category"],
-      "level" => $_POST["level"],
-      "question" => $_POST["question"],
-      "answer_1" => $_POST["answer_1"],
-      "answer_2" => $_POST["answer_2"],
-      "answer_3" => $_POST["answer_3"],
-      "answer_4" => $_POST["answer_4"],
-      "answer_right" => $_POST["answer_right"]
-    ];
-    if (addQuestion($newQuestion)){
-      header('Location: admin.php');
-      exit;
-    }
-  }else{
-
-  }
-}
-
-
-
+$save=null;
 $qId = isset($_POST["id"]) ? $_POST['id'] : null;
 $qCategory = isset($_POST["category"]) ? $_POST['category'] : null;
 $qLevel = isset($_POST["level"]) ? $_POST['level'] : null;
@@ -57,6 +18,84 @@ $qAnswer_2 = isset($_POST["answer_2"]) ? $_POST['answer_2'] : null;
 $qAnswer_3 = isset($_POST["answer_3"]) ? $_POST['answer_3'] : null;
 $qAnswer_4 = isset($_POST["answer_4"]) ? $_POST['answer_4'] : null;
 $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
+
+function validateAllParameters(){
+  if (isset($_POST["category"]) &&
+    isset($_POST["level"]) &&
+    isset($_POST["question"]) &&
+    isset($_POST["answer_1"]) &&
+    isset($_POST["answer_2"]) &&
+    isset($_POST["answer_3"]) &&
+    isset($_POST["answer_4"]) &&
+    isset($_POST["answer_right"])
+  ){
+    return true;
+  }
+  return false;
+}
+
+function setNewQuestion(){
+  $newQuestion=[
+    "category" => $_POST["category"],
+    "level" => $_POST["level"],
+    "question" => $_POST["question"],
+    "answer_1" => $_POST["answer_1"],
+    "answer_2" => $_POST["answer_2"],
+    "answer_3" => $_POST["answer_3"],
+    "answer_4" => $_POST["answer_4"],
+    "answer_right" => $_POST["answer_right"]
+  ];
+  return $newQuestion;
+}
+
+
+function añadirPregunta(){
+  if (validateAllParameters()){
+    if (addQuestion(setNewQuestion())){
+      global $save ;
+      $save = '<h5>Guardado!</h5>';
+    }
+  }
+}
+
+
+if ($_POST) {
+  if (isset($_POST["buscar"])){
+    $question=getQuestionById($_POST["id_seek"]);
+    if ($question !== null){
+      $qId = $question["id"];
+      $qCategory = $question["category"];
+      $qLevel = $question["level"];
+      $qQuestion = $question["question"];
+      $qAnswer_1 = $question["answer_1"];
+      $qAnswer_2 = $question["answer_2"];
+      $qAnswer_3 = $question["answer_3"];
+      $qAnswer_4 = $question["answer_4"];
+      $qAnswerRight = $question["answer_right"];
+    }
+  }
+  if (isset($_POST["new"])){
+    if (getQuestionById($_POST["id"])==null ) {
+      añadirPregunta();
+    }
+    header('Location: admin.php');
+    exit;
+  }
+  if (isset($_POST["mod"]) && (getQuestionById($_POST["id"])!==null)){
+    if ($_POST["mod"]=='all') {
+      if (validateAllParameters()){
+        totalOverwrite($_POST["id"],setNewQuestion());
+      }
+    }else{
+      if (isset($_POST[$_POST["mod"]])){
+        partialyOverwrite($_POST["id"],$_POST["mod"],$_POST[$_POST["mod"]]);
+      }
+    }
+  }
+}
+
+
+
 
 ?>
 <html lang="es" dir="ltr">
@@ -68,12 +107,30 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
     <?php header_of($tittle) ?>
     <main class="container">
       <section class="ABM_PREGUNTAS">
+        <?php OpenPlotCenterMd(12); ?>
+        <h4>Alta, baja y modificación de Preguntas</h4>
+        <?php ClosePlotCenterMd(); ?>
 
         <form action="admin.php" method="post" class="container" enctype="multipart/form-data">
           <?php OpenPlotCenterMd(12); ?>
-            <h4>Alta, baja y modificación de Preguntas</h4>
+          <div class="row">
+            <div class="col">
+              <label for="id_seek">Buscar por identificador</label>
+              <input name="id_seek" id="id_seek" type="number" class="form-control" required>
+            </div>
+          </div>
           <?php ClosePlotCenterMd(); ?>
+          <?php OpenPlotCenterMd(12); ?>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" name="buscar">Buscar</button>
+          </div>
+          <?php ClosePlotCenterMd(); ?>
+        </form>
 
+        <br>
+        <br>
+
+        <form action="admin.php" method="post" class="container" enctype="multipart/form-data">
           <?php OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col-4">
@@ -103,7 +160,7 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
               <select name="category" id="category" class="form-control" required>
                 <?php foreach ($categories as $cat) {
                   if ($cat==$qCategory) {
-                    echo '<option value ="' . $cat . ' selected">' . $cat . '</option>';
+                    echo '<option value ="' . $cat . '" selected>' . $cat . '</option>';
                   }else{
                     echo '<option value ="' . $cat . '">' . $cat . '</option>';
                   }
@@ -122,7 +179,7 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
           <div class="row">
             <div class="col">
               <label for="question">Pregunta</label>
-              <textarea name="question" id="question" rows="4" class="form-control" maxlength="150" required><?= $qQuestion ?></textarea>
+              <textarea name="question" id="question" rows="4" class="form-control" maxlength="200" required><?= $qQuestion ?></textarea>
             </div>
             <div class="form-group ">
               <button type="submit" class="btn btn-primary" name="mod" value="question">Modificar</button>
@@ -135,7 +192,7 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
           <div class="row">
             <div class="col">
               <label for="answer_1">Respuesta nº1</label>
-              <textarea name="answer_1" id="answer_1" rows="3" class="form-control" maxlength="150" required><?= $qAnswer_1 ?></textarea>
+              <textarea name="answer_1" id="answer_1" rows="3" class="form-control" maxlength="200" required><?= $qAnswer_1 ?></textarea>
             </div>
             <div class="form-group ">
               <button type="submit" class="btn btn-primary" name="mod" value="answer_1">Modificar</button>
@@ -147,7 +204,7 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
           <div class="row">
             <div class="col">
               <label for="answer_2">Respuesta nº2</label>
-              <textarea name="answer_2" id="answer_2" rows="3" class="form-control" maxlength="150" required><?= $qAnswer_2 ?></textarea>
+              <textarea name="answer_2" id="answer_2" rows="3" class="form-control" maxlength="200" required><?= $qAnswer_2 ?></textarea>
             </div>
             <div class="form-group ">
               <button type="submit" class="btn btn-primary" name="mod" value="answer_2">Modificar</button>
@@ -159,7 +216,7 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
           <div class="row">
             <div class="col">
               <label for="answer_3">Respuesta nº3</label>
-              <textarea name="answer_3" id="answer_3" rows="3" class="form-control" maxlength="150" required><?= $qAnswer_3 ?></textarea>
+              <textarea name="answer_3" id="answer_3" rows="3" class="form-control" maxlength="200" required><?= $qAnswer_3 ?></textarea>
             </div>
             <div class="form-group ">
               <button type="submit" class="btn btn-primary" name="mod" value="answer_3">Modificar</button>
@@ -171,7 +228,7 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
           <div class="row">
             <div class="col">
               <label for="answer_4">Respuesta nº4</label>
-              <textarea name="answer_4" id="answer_4" rows="3" class="form-control" maxlength="150" required><?= $qAnswer_4 ?></textarea>
+              <textarea name="answer_4" id="answer_4" rows="3" class="form-control" maxlength="200" required><?= $qAnswer_4 ?></textarea>
             </div>
             <div class="form-group ">
               <button type="submit" class="btn btn-primary" name="mod" value="answer_4">Modificar</button>
@@ -183,12 +240,17 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
           <?php OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
-              <label for="answer_4">Respuesta nº4</label>
+              <label for="answer_4">Respuesta correcta</label>
               <select name="answer_right" id="answer_right" class="form-control" required>
-                <option value=1 selected>Respuesta nº1</option>
-                <option value=2>Respuesta nº2</option>
-                <option value=3>Respuesta nº3</option>
-                <option value=4>Respuesta nº4</option>
+                <?php
+                for ($i=1; $i < 5; $i++) {
+                  if ($i==(int)$qAnswerRight) {
+                    echo '<option value ="' . $i . '" selected>Respuesta nº' . $i . '</option>';
+                  }else{
+                    echo '<option value ="' . $i . '">Respuesta nº' . $i . '</option>';
+                  }
+                }
+                ?>
               </select>
             </div>
             <div class="form-group ">
@@ -205,6 +267,13 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
             </div>
           <?php ClosePlotCenterMd(); ?>
 
+          <?php OpenPlotCenterMd(12); ?>
+          <div class="row">
+            <div class="col">
+              <?= $save ?>
+            </div>
+          </div>
+          <?php ClosePlotCenterMd(); ?>
 
 
         </form>

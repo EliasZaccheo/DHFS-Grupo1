@@ -35,6 +35,7 @@
 
   function footer_of(){
     echo '
+      <a name="foot-page"></a>    <!-- Ancla pie de página -->
       <footer>
           <!--
           <div class="contenedor-footer">
