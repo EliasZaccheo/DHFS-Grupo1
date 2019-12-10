@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once("./php/abm-users.php");
 $email=" ";
 $user=[];
@@ -24,7 +24,7 @@ $usuariosarray=json_decode($usuarios,true);
     }
   }
 
- 
+
  ?>
 
 
