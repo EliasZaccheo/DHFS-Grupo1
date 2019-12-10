@@ -34,7 +34,7 @@ function addQuestion($question){
   }
 }
 
-// Retorna un array con los usuarios almacenados
+// Retorna un array con las preguntas almacenadas
 function getQuestionsDecode(){
   global $file;
   $fileOpen = file_get_contents($file);
@@ -44,6 +44,11 @@ function getQuestionsDecode(){
     $questions=[];
   }
   return $questions;
+}
+
+// Retorna la cantidad de preguntas almacenadas
+function getQuestionsCount(){
+  return count(getQuestionsDecode());
 }
 
 // Busca y retorna una pregunta por su identificador

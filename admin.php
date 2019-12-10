@@ -17,6 +17,34 @@ $qAnswer_3=null;
 $qAnswer_4=null;
 $qAnswerRight=null;
 
+if ($_POST) {
+  if (isset($_POST["category"]) &&
+    isset($_POST["level"]) &&
+    isset($_POST["question"]) &&
+    isset($_POST["answer_1"]) &&
+    isset($_POST["answer_2"]) &&
+    isset($_POST["answer_3"]) &&
+    isset($_POST["answer_4"]) &&
+    isset($_POST["answer_right"])
+  ){
+    $newQuestion=[
+      "category" => $_POST["category"],
+      "level" => $_POST["level"],
+      "question" => $_POST["question"],
+      "answer_1" => $_POST["answer_1"],
+      "answer_2" => $_POST["answer_2"],
+      "answer_3" => $_POST["answer_3"],
+      "answer_4" => $_POST["answer_4"],
+      "answer_right" => $_POST["answer_right"]
+    ];
+    if (addQuestion($newQuestion)){
+      header('Location: admin.php');
+      exit;
+    }
+  }else{
+
+  }
+}
 
 
 
@@ -40,6 +68,7 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
     <?php header_of($tittle) ?>
     <main class="container">
       <section class="ABM_PREGUNTAS">
+
         <form action="admin.php" method="post" class="container" enctype="multipart/form-data">
           <?php OpenPlotCenterMd(12); ?>
             <h4>Alta, baja y modificación de Preguntas</h4>
@@ -170,7 +199,8 @@ $qAnswerRight = isset($_POST["answer_right"]) ? $_POST['answer_right'] : null;
 
           <?php OpenPlotCenterMd(12); ?>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary">Sobreescribir todo</button>
+              <button type="submit" class="btn btn-primary" name="new">Nueva pregunta</button>
+              <button type="submit" class="btn btn-primary" name="mod" value="all">Sobreescribir todo</button>
               <button type="reset" class="btn btn-primary">Limpiar</button>
             </div>
           <?php ClosePlotCenterMd(); ?>
