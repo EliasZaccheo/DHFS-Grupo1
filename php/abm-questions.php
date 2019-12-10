@@ -13,7 +13,7 @@ $categories =[
 
 // Añade una pregunta con los campos 'question', 'answer_n' (n:[1..4]) y 'answer_right'.
 // Retorna el identificador designado de esta pregunta
-function addUser($question){
+function addQuestion($question){
   if ($question){
     $questions=getQuestionsDecode();
     $questions[]=[
