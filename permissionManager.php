@@ -16,7 +16,6 @@ public static function getInstance()
   {
     if (!self::$instance instanceof PermissionManager)
       self::$instance=new self();
-
     return self::$instance;
 }
 
