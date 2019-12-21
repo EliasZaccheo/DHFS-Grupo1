@@ -1,20 +1,28 @@
 <?php 
+include_once("php/register_functions.php");
 include_once("./php/abm-users.php");
 $userEmail=" ";
 
   if ($_POST) {
     $userEmail= $_POST["login-email"];
-    $userPass=password_hash($_POST["password"], PASSWORD_DEFAULT);
+    //$userPass=password_hash($_POST["password"],PASSWORD_DEFAULT);
     $usuarios = file_get_contents("json/users.json");
     $usuariosarray=json_decode($usuarios,true);
     $email= $_POST["login-email"];
 
     $user= findUserByEmail($userEmail);
-  
-    if ($user["email"]==$userEmail and $user["password"]==$userPass) {
+    
+    /*echo $userPass."<br>";
+    echo $user["password"]."<br>";*/    
+
+    if ($user["email"]==$userEmail && password_verify($_POST["password"], $user["password"])) {
       session_start();
       $_SESSION["mail"]=$userEmail;
-    }else{ echo "Email o Contraseña incorrecto";}
+      header('Location: home.php');
+      exit;
+    }else{ $emailPop = dangerAlert("Email o Contraseña incorrectos");}
+
+
 
   }
 
@@ -46,6 +54,7 @@ $userEmail=" ";
 
         <?php OpenPlotCenterMd(6); ?>
           <input name="login-email" id="login-email" type="email" class="form-control" placeholder="email@ejemplo.com" required value=" <?php echo $userEmail ?>">
+        <?= isset($emailPop) ? $emailPop : null ?>
         <?php ClosePlotCenterMd(); ?>
 
         <?php OpenPlotCenterMd(6); ?>

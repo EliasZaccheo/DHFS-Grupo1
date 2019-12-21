@@ -9,7 +9,7 @@ function addUser($user){
     $users[]=[
       "username" => $user["username"],
       "email" => $user["email"],
-      "password" => $user["passwordCreate"],
+      "password" => $user["password"],
       "user-birth" => $user["user-birth"],
       "profile-image" => $user["profile-image"]
     ];
