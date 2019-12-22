@@ -8,6 +8,16 @@ private CONST VISITOR=0;
 private CONST USER=1;
 private CONST SUPERUSER=2;
 private static $instance=null;
+private $categories =[
+  "Ciencias",
+  "Cultura",
+  "Entretenimiento",
+  "Gastronomía",
+  "Deportes",
+  "Historia",
+  "Arte",
+  "Farandula"
+];
 
 
 private function __construc() { }
@@ -51,6 +61,11 @@ static public function getUserValue(){
 
 static public function getSuperuserValue(){
   return self::SUPERUSER;
+}
+
+
+public function getCategories(){
+    return $this->categories;
 }
 
 }
