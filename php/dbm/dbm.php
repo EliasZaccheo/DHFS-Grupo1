@@ -1,20 +1,22 @@
 <?php
-
+/*  Abstract class */
 abstract class DataBaseManager
 {
 
   private $source;
 
-  function __construct($source){
+  protected function __construct($source){
     $this->source=$source;
   }
 
-  function writeSource($request){
+/*  Sobre escribe la fuente con el dato enviado. Codifica antes de escribir. */
+  public function writeSourceEncode($request){
     global $source;
     file_put_contents($source,json_encode($request));
   }
 
-  function getSourceDecode(){
+/*  Decodifica y retorna el contenido de la fuente*/
+  public function getSourceDecode(){
     global $source;
     $fileOpen = file_get_contents($source);
     if ($fileOpen){
@@ -25,10 +27,12 @@ abstract class DataBaseManager
     return $answer;
   }
 
+/*  Retorna la cuente */
   public function getSource(){
     return $this->source;
   }
 
+/*  Cambia la fuente por el dato recibido por parámetro. */
   public function setSource($source){
     $this->source = $source;
     return $this;
