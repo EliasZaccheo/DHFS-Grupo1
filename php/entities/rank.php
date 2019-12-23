@@ -9,7 +9,7 @@ class Rank
 
 /* Requiere el usuario al que referencia
 */
-  function __construct($user){
+  public function __construct($user){
     $this->email=$user->getEmail();
     foreach (PermissionManager::getInstance()->getCategories() as $category) {
       $this->ranking[$category]=0;
@@ -45,7 +45,7 @@ class Rank
 
 
   public function setEmail($email){
-      $this->email = $email; 
+      $this->email = $email;
       return $this;
   }
 

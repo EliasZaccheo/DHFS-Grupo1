@@ -10,7 +10,7 @@ abstract class DataBaseManager
   }
 
 /*  Sobre escribe la fuente con el dato enviado. Codifica antes de escribir. */
-  public function writeSourceEncode($request){
+  public function setSourceEncode($request){
     global $source;
     file_put_contents($source,json_encode($request));
   }
@@ -20,7 +20,7 @@ abstract class DataBaseManager
     global $source;
     $fileOpen = file_get_contents($source);
     if ($fileOpen){
-      $answer = json_decode($fileOpen,true);}
+      $answer = json_decode($fileOpen);}
     else{
       $answer=[];
     }
@@ -36,6 +36,10 @@ abstract class DataBaseManager
   public function setSource($source){
     $this->source = $source;
     return $this;
+  }
+
+  public function getElemensCount(){
+    return count($this->getSourceDecode());
   }
 
 }
