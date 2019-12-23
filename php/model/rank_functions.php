@@ -1,8 +1,8 @@
 <?php
-include_once('../dbm/dbmRank.php');
-include_once('../entities/rank.php');
-include_once('../dbm/dbmUsers.php');
-include_once('../entities/user.php');
+include_once('./php/dbm/dbmRank.php');
+include_once('./php/entities/rank.php');
+include_once('./php/dbm/dbmUsers.php');
+include_once('./php/entities/user.php');
 /*  Singleton class
 * support for ranking view
 */
@@ -35,7 +35,7 @@ class RankTools {
   }
 
   public function addRow($user,$category=null){
-    $rank=$DBMRank->getRankByEmail($user->getEmail);
+    $rank=$DBMRank->getRankByEmail($user->getEmail());
     echo'
       <tr>
         <th scope="row">1</th>';

@@ -1,6 +1,6 @@
 <?php
-include_once('./dbm.php');
-include_once('./dbmUsers.php');
+include_once('./php/dbm/dbm.php');
+include_once('./php/dbm/dbmUsers.php');
 
 /*  Singleton class
 * Opera con el Alta, Baja y Modificación de objetos 'Rank'.

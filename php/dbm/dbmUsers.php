@@ -1,5 +1,5 @@
 <?php
-include_once('dbm.php');
+include_once('./php/dbm/dbm.php');
 
 /*  Singleton class */
 class DBMUsers extends DataBaseManager{

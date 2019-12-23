@@ -1,5 +1,5 @@
 <?php
-include_once('../../permissionManager.php');
+include_once('./permissionManager.php');
 /** Objeto rank, acumula el puntaje en cada categoría de un jugador (idenficado por email)
 */
 class Rank

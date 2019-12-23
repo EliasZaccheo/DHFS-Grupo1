@@ -1,5 +1,5 @@
 <?php
-include_once("php/model/register_functions.php");
+include_once("./php/model/register_functions.php");
 include_once("./php/model/abm-users.php");
 $userEmail=" ";
 

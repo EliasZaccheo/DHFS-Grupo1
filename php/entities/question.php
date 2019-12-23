@@ -1,5 +1,5 @@
 <?php
-include_once('../dbm/dbmQuestions.php');
+include_once('./php/dbm/dbmQuestions.php');
 /** Objeto question
 */
 class Question
