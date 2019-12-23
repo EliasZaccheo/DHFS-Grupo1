@@ -8,7 +8,7 @@ include_once('../entities/question.php');
 * Almacena en formato objeto.
 */
 class DBMQuestions extends DataBaseManager{
-  private const SOURCE='../../json/questions.json';
+  private const SOURCE='../../json/questionsv1.json';
   private $instance=null;
 
   private function __construct(){

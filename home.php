@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include_once("./php/model/parts.php") ?>
+<?php include_once("./php/model/parts.php"); ?>
 <html lang="es" dir="ltr">
   <head>
     <?php Parts::head_of() ?>
