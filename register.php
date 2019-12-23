@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <?php
 include_once("./php/model/parts.php");
-include_once("./php/model/abm-users.php");
+include_once("./php/abm-users.php");
 include_once("./php/model/register_functions.php");
+include_once("./php/entities/usuarios.php");
 $tittle="Registro";
 
 $username = null;
@@ -20,18 +21,25 @@ if ($_POST){
       checkbirth($_POST["user-birth"]) &&
       passwordValidate($_POST["passwordCreate"],$_POST["passwordConfirm"])
     ){
-    $user=[
+    /*$user=[
       "username" => $_POST["username"],
       "email" => $_POST["email"],
       "user-birth" => $_POST["user-birth"],
       "password" => password_hash($_POST["passwordCreate"],PASSWORD_DEFAULT)
-    ];
+    ];*/
+
+     $user=new usuarios($_POST["username"],$_POST["email"],"activo",password_hash($_POST["passwordCreate"],PASSWORD_DEFAULT),$_POST["user-birth"]);
+    // CREACION DE OBJETO USUARIO!!!
+
+
     if (validateImg("profile-image")) {
-      $user["profile-image"]=uploadImage("profile-image" ,$user["username"]);
+      $user->setAvatar(uploadImage("profile-image" ,$user->getUserName()));
     }else{
-      $user["profile-image"]=$defaultimg;
+      $user->setAvatar($defaultimg);
     }
     if (addUser($user)){
+      session_start();
+      $_SESSION["mail"]=$_POST["email"];
       header('Location: login.php');
       exit;
     }

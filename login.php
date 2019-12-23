@@ -1,29 +1,30 @@
 <?php
 include_once("./php/model/register_functions.php");
-include_once("./php/model/abm-users.php");
+include_once("./php/abm-users.php");
 $userEmail=" ";
+session_start();
+  if($_SESSION){
+    $userEmail=$_SESSION["mail"];
+  }
 
   if ($_POST) {
     $userEmail= $_POST["login-email"];
     //$userPass=password_hash($_POST["password"],PASSWORD_DEFAULT);
     $usuarios = file_get_contents("json/users.json");
     $usuariosarray=json_decode($usuarios,true);
-    $email= $_POST["login-email"];
+    //$email= $_POST["login-email"];
 
     $user= findUserByEmail($userEmail);
-
+    
     /*echo $userPass."<br>";
-    echo $user["password"]."<br>";*/
+    echo $user["password"]."<br>";*/    
 
-    if ($user["email"]==$userEmail && password_verify($_POST["password"], $user["password"])) {
+    if ($user->getEmail()==$userEmail && password_verify($_POST["password"], $user->getPassword())) {
       session_start();
       $_SESSION["mail"]=$userEmail;
       header('Location: home.php');
       exit;
     }else{ $emailPop = dangerAlert("Email o Contraseña incorrectos");}
-
-
-
   }
 
 

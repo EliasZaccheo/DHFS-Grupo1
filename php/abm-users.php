@@ -1,4 +1,5 @@
 <?php
+include_once("entities/usuarios.php");
 $file = "./json/users.json";
 $defaultimg= "img/usersProfiles/unknown.png";
 
@@ -7,11 +8,12 @@ function addUser($user){
   if ($user){
     $users=getUsersDecode();
     $users[]=[
-      "username" => $user["username"],
-      "email" => $user["email"],
-      "password" => $user["password"],
-      "user-birth" => $user["user-birth"],
-      "profile-image" => $user["profile-image"]
+      "username" => $user->getUserName(),
+      "email" => $user->getEmail(),
+      "password" => $user->getPassword(),
+      "user-birth" => $user->getUserBirth(),
+      "profile-image" => $user->getAvatar(),
+      "estado" => $user->getEstado()
     ];
     global $file;
     file_put_contents($file,json_encode($users));
@@ -38,7 +40,9 @@ function findUserByUsername($username){
   $users=getUsersDecode();
   foreach ($users as $user) {
     if ($user["username"]==$username){
-      return $user;
+      $user2=new usuarios($user["username"],$user["email"],$user["estado"],$user["password"],$user["user-birth"]);
+      $user2->setAvatar($user["profile-image"]);
+      return $user2;
     }
   }
   return null;
@@ -59,7 +63,9 @@ function findUserByEmail($email){
   $users=getUsersDecode();
   foreach ($users as $user) {
     if ($user["email"]==$email){
-      return $user;
+      $user2=new usuarios($user["username"],$user["email"],$user["estado"],$user["password"],$user["user-birth"]);
+      $user2->setAvatar($user["profile-image"]);
+      return $user2;
     }
   }
   return null;
