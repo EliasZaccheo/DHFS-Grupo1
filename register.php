@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
-include_once("./php/parts.php");
-include_once("./php/abm-users.php");
-include_once("./php/register_functions.php");
+include_once("./php/model/parts.php");
+include_once("./php/model/abm-users.php");
+include_once("./php/model/register_functions.php");
 $tittle="Registro";
 
 $username = null;
@@ -45,59 +45,59 @@ if ($_POST){
 ?>
 <html lang="es" dir="ltr">
   <head>
-    <?php head_of() ?>
+    <?php Parts::head_of() ?>
     <title><?php echo $tittle;?></title>
   </head>
   <body>
-    <?php header_of($tittle) ?>
+    <?php Parts::header_of($tittle) ?>
     <main class="container ">
       <section class="REGISTER ">
         <form action="register.php" method="post" class="container" enctype="multipart/form-data">
 
-        <?php OpenPlotCenterMd(6); ?>
+        <?php Parts::OpenPlotCenterMd(6); ?>
           <h4>Formulario de registro</h4>
-        <?php ClosePlotCenterMd(); ?>
+        <?php Parts::ClosePlotCenterMd(); ?>
 
-        <?php OpenPlotCenterMd(6); ?>
+        <?php Parts::OpenPlotCenterMd(6); ?>
           <input name="username" id="username" value='<?= $username ?>' type="text" class="form-control" placeholder="Nombre de usuario" maxlength="50" required>
           <?= isset($usernamePop) ? $usernamePop : null ?>
-        <?php ClosePlotCenterMd(); ?>
+        <?php Parts::ClosePlotCenterMd(); ?>
 
-        <?php OpenPlotCenterMd(6); ?>
+        <?php Parts::OpenPlotCenterMd(6); ?>
           <input name="email" id="email" type="email" value='<?= $email ?>' class="form-control" placeholder="email@ejemplo.com" maxlength="50" required>
           <?= isset($emailPop) ? $emailPop : null ?>
-        <?php ClosePlotCenterMd(); ?>
+        <?php Parts::ClosePlotCenterMd(); ?>
 
-        <?php OpenPlotCenterMd(6); ?>
+        <?php Parts::OpenPlotCenterMd(6); ?>
           <input type="password" class="form-control" name="passwordCreate" id="passwordCreate" placeholder="Contraseña" maxlength="50" required>
           <?= isset($passwordPop) ? $passwordPop : null ?>
-        <?php ClosePlotCenterMd(); ?>
+        <?php Parts::ClosePlotCenterMd(); ?>
 
-        <?php OpenPlotCenterMd(6); ?>
+        <?php Parts::OpenPlotCenterMd(6); ?>
           <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="Confirme contraseña" maxlength="50" required>
-        <?php ClosePlotCenterMd(); ?>
+        <?php Parts::ClosePlotCenterMd(); ?>
 
-        <?php OpenPlotCenterMd(6); ?>
+        <?php Parts::OpenPlotCenterMd(6); ?>
           <label for="profile">Fecha de nacimiento</label>
           <input name="user-birth" id="user-birth" value='<?= $userbirth ?>' type="date" class="form-control"  required>
           <?= isset($userBirthPop) ? $userBirthPop : null ?>
-        <?php ClosePlotCenterMd(); ?>
+        <?php Parts::ClosePlotCenterMd(); ?>
 
-        <?php OpenPlotCenterMd(6); ?>
+        <?php Parts::OpenPlotCenterMd(6); ?>
           <label for="profile">Imagen de perfíl</label>
           <input name="profile-image" id="profile-image" type="file" class="form-control-file">
           <?= isset($profileImagePop) ? $profileImagePop : null ?>
-        <?php ClosePlotCenterMd(); ?>
+        <?php Parts::ClosePlotCenterMd(); ?>
 
-        <?php OpenPlotCenterMd(6); ?>
+        <?php Parts::OpenPlotCenterMd(6); ?>
           <div class="form-group">
             <button type="submit" class="btn btn-primary">Enviar</button>
             <button type="reset" class="btn btn-primary">Limpiar</button>
           </div>
-        <?php ClosePlotCenterMd(); ?>
+        <?php Parts::ClosePlotCenterMd(); ?>
         </form>
       </section>
     </main>
-    <?php footer_of(); ?>
+    <?php Parts::footer_of(); ?>
   </body>
 </html>

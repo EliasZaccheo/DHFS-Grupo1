@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<?php include_once("./php/questions.php")?>
-	<?php include_once("./php/parts.php") ?>
+	<?php include_once("./php/model/questions.php")?>
+	<?php include_once("./php/model/parts.php") ?>
 	<?php $tittle="play"; ?>
 	<html lang="es" dir="ltr">
 <head>
-	<?php head_of() ?>
+	<?php Parts::head_of() ?>
 	<title>JUGUEMOS!!!!</title>
 </head>
 <body>
-	<?php header_of("JUGUEMOS!!!") ?>
+	<?php Parts::header_of("JUGUEMOS!!!") ?>
 	<div class="container-fluid">
 		<br>
 		<div class="user">

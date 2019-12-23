@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<?php include_once("./php/parts.php") ?>
+<?php include_once("./php/model/parts.php") ?>
 <?php $tittle="Perfil de usuario"; ?>
 <html lang="es" dir="ltr">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=3">
-    <?php head_of() ?>
+    <?php Parts::head_of() ?>
     <title><?php echo $tittle;?></title>
   </head>
   <body>
-    <?php header_of($tittle) ?>
+    <?php Parts::header_of($tittle) ?>
     <main class="container">
     </main>
     <body bgcolor="#E6E6FA">
@@ -58,7 +58,7 @@
     <a class="boton_personalizado" href="">SER VIP</a>
   </body>
   </html>
-<?php footer_of(); ?>
+<?php Parts::footer_of(); ?>
 
 
 <style>

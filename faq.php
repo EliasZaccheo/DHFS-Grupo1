@@ -1,5 +1,5 @@
 <?php
-include_once("./php/abm-users.php");
+include_once("./php/model/abm-users.php");
 $email=" ";
 $user=[];
 $usuarios = file_get_contents("json/users.json");
@@ -30,17 +30,17 @@ $usuariosarray=json_decode($usuarios,true);
 
 
 <!DOCTYPE html>
-<?php include_once("./php/faq_functions.php")?>
-<?php include_once("./php/parts.php") ?>
+<?php include_once("./php/model/faq_functions.php")?>
+<?php include_once("./php/model/parts.php") ?>
 <?php $tittle="F.A.Q. - Preguntas frecuentes"; ?>
 <html lang="es" dir="ltr">
   <head>
-    <?php head_of() ?>
+    <?php Parts::head_of() ?>
     <link rel="stylesheet" href="css/faq_styles.css">
     <title><?php echo $tittle;?></title>
   </head>
   <body >
-    <?php header_of($tittle) ?>
+    <?php Parts::header_of($tittle) ?>
     <main class="container">
       <section class="FAQ">
         <?php add_question($cases); ?>
@@ -58,31 +58,31 @@ $usuariosarray=json_decode($usuarios,true);
         <br>
         <a name="contacto"></a>    <!-- Ancla del formulario de contacto -->
         <form action="faq.php" method="post" >
-          <?php OpenPlotCenterMd(6); ?>
+          <?php Parts::OpenPlotCenterMd(6); ?>
           <h4>Formulario de contacto</h4>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
-          <?php OpenPlotCenterMd(6); ?>
+          <?php Parts::OpenPlotCenterMd(6); ?>
             <input name="contact-email" id="contact-email" type="email" class="form-control" placeholder="nombre@ejemplo.com" required value="<?php echo $email; ?>">
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
-          <?php OpenPlotCenterMd(6); ?>
+          <?php Parts::OpenPlotCenterMd(6); ?>
             <h2>Archivo de consulta:</h2>
             <input name="contact-file" id="contact-file" type="file" class="form-control-file">
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
-          <?php OpenPlotCenterMd(6); ?>
+          <?php Parts::OpenPlotCenterMd(6); ?>
             <textarea name="request" id="request" class="form-control" rows="3" placeholder="Comentario" required></textarea>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
-          <?php OpenPlotCenterMd(6); ?>
+          <?php Parts::OpenPlotCenterMd(6); ?>
             <div class="form-group">
               <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
         </form>
       </section>
     </main>
-    <?php footer_of(); ?>
+    <?php Parts::footer_of(); ?>
   </body>
 </html>

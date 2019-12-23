@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<?php include_once("./php/parts.php") ?>
+<?php include_once("./php/model/parts.php") ?>
 <html lang="es" dir="ltr">
   <head>
-    <?php head_of() ?>
+    <?php Parts::head_of() ?>
     <title>Wise Game</title>
 </head>
 
 <body>
-    <?php header_of("TRIVIA") ?>
+    <?php Parts::header_of("TRIVIA") ?>
     <main>
         <section class="contenedor sobre-nosotros">
         <a class="boton" href="play.php" target="_blank">PLAY</a>
@@ -123,7 +123,7 @@
                     <div class="servicio-ind">
                         <img src="img/colaborador1.jpg" alt="">
                         <h3>Federico Ungaro</h3>
-                      
+
                     </div>
                     <div class="servicio-ind">
                         <img src="img/colaborador2.jpg" alt="">
@@ -144,7 +144,7 @@
             </div>
         </section>
     </main>
-    <?php footer_of(); ?>
+    <?php Parts::footer_of(); ?>
 </body>
 
 </html>
