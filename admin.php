@@ -160,7 +160,8 @@ if ($_POST) {
                 ?>
               </select>
             </div>
-            <div class="form-group ">
+
+            <div class="form-group align-self-end mb-0">
               <button type="submit" class="btn btn-primary" name="mod" value="category">Modificar</button>
             </div>
           </div>
@@ -173,7 +174,7 @@ if ($_POST) {
               <label for="question">Pregunta</label>
               <textarea name="question" id="question" rows="4" class="form-control" maxlength="200" required><?= $qQuestion ?></textarea>
             </div>
-            <div class="form-group ">
+            <div class="form-group align-self-end mb-0">
               <button type="submit" class="btn btn-primary" name="mod" value="question">Modificar</button>
             </div>
           </div>
@@ -186,7 +187,7 @@ if ($_POST) {
               <label for="answer_1">Respuesta nº1</label>
               <textarea name="answer_1" id="answer_1" rows="3" class="form-control" maxlength="200" required><?= $qAnswer_1 ?></textarea>
             </div>
-            <div class="form-group ">
+            <div class="form-group align-self-end mb-0">
               <button type="submit" class="btn btn-primary" name="mod" value="answer_1">Modificar</button>
             </div>
           </div>
@@ -198,7 +199,7 @@ if ($_POST) {
               <label for="answer_2">Respuesta nº2</label>
               <textarea name="answer_2" id="answer_2" rows="3" class="form-control" maxlength="200" required><?= $qAnswer_2 ?></textarea>
             </div>
-            <div class="form-group ">
+            <div class="form-group align-self-end mb-0">
               <button type="submit" class="btn btn-primary" name="mod" value="answer_2">Modificar</button>
             </div>
           </div>
@@ -210,7 +211,7 @@ if ($_POST) {
               <label for="answer_3">Respuesta nº3</label>
               <textarea name="answer_3" id="answer_3" rows="3" class="form-control" maxlength="200" required><?= $qAnswer_3 ?></textarea>
             </div>
-            <div class="form-group ">
+            <div class="form-group align-self-end mb-0">
               <button type="submit" class="btn btn-primary" name="mod" value="answer_3">Modificar</button>
             </div>
           </div>
@@ -222,7 +223,7 @@ if ($_POST) {
               <label for="answer_4">Respuesta nº4</label>
               <textarea name="answer_4" id="answer_4" rows="3" class="form-control" maxlength="200" required><?= $qAnswer_4 ?></textarea>
             </div>
-            <div class="form-group ">
+            <div class="form-group align-self-end mb-0">
               <button type="submit" class="btn btn-primary" name="mod" value="answer_4">Modificar</button>
             </div>
           </div>
@@ -245,7 +246,7 @@ if ($_POST) {
                 ?>
               </select>
             </div>
-            <div class="form-group ">
+            <div class="form-group align-self-end mb-0">
               <button type="submit" class="btn btn-primary" name="mod" value="answer_right">Modificar</button>
             </div>
           </div>
