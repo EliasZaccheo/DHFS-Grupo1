@@ -1,82 +1,59 @@
 <?php
+include_once('../dbm/dbmRank.php');
+include_once('../entities/rank.php');
+include_once('../dbm/dbmUsers.php');
+include_once('../entities/user.php');
+/*  Singleton class
+* support for ranking view
+*/
+class RankTools {
 
-  $cases=[
-    [ "user_name" => "Tito",
-      "user_gender" => "male",
-      "user_age" => 12,
-      "user_score" => 15 ],
-    [
-      "user_name" => "Tita",
-      "user_gender" => "female",
-      "user_age" => 13,
-      "user_score" => 95 ],
-    [
-      "user_name" => "Tite",
-      "user_gender" => "other",
-      "user_age" => 16,
-      "user_score" => 13 ],
-    [
-      "user_name" => "Fulano",
-      "user_gender" => "male",
-      "user_age" => 14,
-      "user_score" => 37 ],
-    [
-      "user_name" => "Fulana",
-      "user_gender" => "female",
-      "user_age" => 19,
-      "user_score" => 180 ],
-    [
-      "user_name" => "Mengano",
-      "user_gender" => "male",
-      "user_age" => 17,
-      "user_score" => 87 ],
-    [
-      "user_name" => "Christine",
-      "user_gender" => "other",
-      "user_age" => 17,
-      "user_score" => 92 ],
-    [
-      "user_name" => "Ramiro",
-      "user_gender" => "male",
-      "user_age" => 21,
-      "user_score" => 127 ],
-    [
-      "user_name" => "Tamara",
-      "user_gender" => "female",
-      "user_age" => 14,
-      "user_score" => 145 ],
-  ];
+  private $instance=null;
+  private $DBMRank;
 
+  private function __construct(){
+    $DBMRank=DBMRank::getInstance();
+  }
 
-  function showRankAll($users){
-    $usersOrder=orderUsers($users);
+  public function getInstance(){
+    if (!self::$instance instanceof RankTools){
+      self::$instance=new self();}
+    return self::$instance;
+  }
+
+  public function showRankAll($category=null){
+    $users=DBMUsers::getInstance()->getUsers();
+    $usersOrder=$this->orderUsers($users,$category);
     arsort($usersOrder);
     foreach ($usersOrder as $key => $value ) {
       $i = 0;
-      while ($users[$i]["user_name"]!=$key){
+      while ($users[$i]->getUsername()!=$key){
         $i++;
       }
-      addRow($users[$i]);
+      addRow($users[$i],$category);
     }
   }
 
-  function addRow($user){
+  public function addRow($user,$category=null){
+    $rank=$DBMRank->getRankByEmail($user->getEmail);
     echo'
       <tr>
         <th scope="row">1</th>';
     echo "
-        <td>$user[user_score]</td>
-        <td>$user[user_name]</td>
-        <td>$user[user_age]</td>
+        <td>$rank->getScore($category)</td>
+        <td>$user->getUsername()</td>
+        <td>$user->getAge()</td>
       </tr>";
   }
 
- function orderUsers($users){
+/* Retorna un arreglo de [Username]=Score
+ */
+ public function orderUsers($users,$category=null){
    $array=[];
    foreach ($users as $user) {
-     $array[$user["user_name"]]=$user["user_score"];
+     $array[$user->getUsername()]=$DBMRank->getRankByEmail($user->getEmail())->getScore($category);
    }
    return $array;
  }
-
+}
  ?>

@@ -4,8 +4,10 @@
 //  header('Location: login.php');
 //  exit;
 //}
-include_once("./php/parts.php");
-include_once("./php/abm-questions.php");
+include_once("./php/model/parts.php");
+include_once("./php/dbm/dbmQuestions.php");
+include_once("./php/entities/Question.php");
+
 $tittle="Administración - ABM";
 
 $save=null;
@@ -35,23 +37,13 @@ function validateAllParameters(){
 }
 
 function setNewQuestion(){
-  $newQuestion=[
-    "category" => $_POST["category"],
-    "level" => $_POST["level"],
-    "question" => $_POST["question"],
-    "answer_1" => $_POST["answer_1"],
-    "answer_2" => $_POST["answer_2"],
-    "answer_3" => $_POST["answer_3"],
-    "answer_4" => $_POST["answer_4"],
-    "answer_right" => $_POST["answer_right"]
-  ];
-  return $newQuestion;
+  return new Question($_POST["category"],$_POST["level"],$_POST["question"],$_POST["answer_1"],$_POST["answer_2"],$_POST["answer_3"],$_POST["answer_4"],$_POST["answer_right"]);
 }
 
 
 function añadirPregunta(){
   if (validateAllParameters()){
-    if (addQuestion(setNewQuestion())){
+    if (DBMQuestions::getInstance()->addQuestion(setNewQuestion())){
       global $save ;
       $save = '<h5>Guardado!</h5>';
     }
@@ -61,7 +53,7 @@ function añadirPregunta(){
 
 if ($_POST) {
   if (isset($_POST["buscar"])){
-    $question=getQuestionById($_POST["id_seek"]);
+    $question=DBMQuestions::getInstance()->getQuestionById($_POST["id_seek"]);
     if ($question !== null){
       $qId = $question["id"];
       $qCategory = $question["category"];
@@ -75,20 +67,20 @@ if ($_POST) {
     }
   }
   if (isset($_POST["new"])){
-    if (getQuestionById($_POST["id"])==null ) {
+    if (DBMQuestions::getInstance()->getQuestionById($_POST["id"])==null ) {
       añadirPregunta();
     }
     header('Location: admin.php');
     exit;
   }
-  if (isset($_POST["mod"]) && (getQuestionById($_POST["id"])!==null)){
+  if (isset($_POST["mod"]) && (DBMQuestions::getInstance()->getQuestionById($_POST["id"])!==null)){
     if ($_POST["mod"]=='all') {
       if (validateAllParameters()){
-        totalOverwrite($_POST["id"],setNewQuestion());
+        DBMQuestions::getInstance()->totalOverwrite($_POST["id"],setNewQuestion());
       }
     }else{
       if (isset($_POST[$_POST["mod"]])){
-        partialyOverwrite($_POST["id"],$_POST["mod"],$_POST[$_POST["mod"]]);
+        DBMQuestions::getInstance()->partialyOverwrite($_POST["id"],$_POST["mod"],$_POST[$_POST["mod"]]);
       }
     }
   }
@@ -100,38 +92,38 @@ if ($_POST) {
 ?>
 <html lang="es" dir="ltr">
   <head>
-    <?php head_of() ?>
+    <?php Parts::head_of() ?>
     <title><?php echo $tittle;?></title>
   </head>
   <body>
-    <?php header_of($tittle) ?>
+    <?php Parts::header_of($tittle) ?>
     <main class="container">
       <section class="ABM_PREGUNTAS">
-        <?php OpenPlotCenterMd(12); ?>
+        <?php Parts::OpenPlotCenterMd(12); ?>
         <h4>Alta, baja y modificación de Preguntas</h4>
-        <?php ClosePlotCenterMd(); ?>
+        <?php Parts::ClosePlotCenterMd(); ?>
 
         <form action="admin.php" method="post" class="container" enctype="multipart/form-data">
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
               <label for="id_seek">Buscar por identificador</label>
               <input name="id_seek" id="id_seek" type="number" class="form-control" required>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="form-group">
             <button type="submit" class="btn btn-primary" name="buscar">Buscar</button>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
         </form>
 
         <br>
         <br>
 
         <form action="admin.php" method="post" class="container" enctype="multipart/form-data">
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col-4">
               <label for="id">ID</label>
@@ -140,8 +132,8 @@ if ($_POST) {
               <label for="level">Nivel</label>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col-4">
               <input name="id" id="id" value='<?= $qId ?>' type="number" class="form-control" readonly>
@@ -150,10 +142,10 @@ if ($_POST) {
               <input name="level" id="level" value='<?= $qLevel ?>' type="number" class="form-control" maxlength="4" required>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
           <br>
 
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
               <label for="category">Categoria</label>
@@ -172,10 +164,10 @@ if ($_POST) {
               <button type="submit" class="btn btn-primary" name="mod" value="category">Modificar</button>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
           <br>
 
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
               <label for="question">Pregunta</label>
@@ -185,10 +177,10 @@ if ($_POST) {
               <button type="submit" class="btn btn-primary" name="mod" value="question">Modificar</button>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
           <br><br>
 
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
               <label for="answer_1">Respuesta nº1</label>
@@ -198,9 +190,9 @@ if ($_POST) {
               <button type="submit" class="btn btn-primary" name="mod" value="answer_1">Modificar</button>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
               <label for="answer_2">Respuesta nº2</label>
@@ -210,9 +202,9 @@ if ($_POST) {
               <button type="submit" class="btn btn-primary" name="mod" value="answer_2">Modificar</button>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
               <label for="answer_3">Respuesta nº3</label>
@@ -222,9 +214,9 @@ if ($_POST) {
               <button type="submit" class="btn btn-primary" name="mod" value="answer_3">Modificar</button>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
               <label for="answer_4">Respuesta nº4</label>
@@ -234,10 +226,10 @@ if ($_POST) {
               <button type="submit" class="btn btn-primary" name="mod" value="answer_4">Modificar</button>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
           <br>
 
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
               <label for="answer_4">Respuesta correcta</label>
@@ -257,28 +249,28 @@ if ($_POST) {
               <button type="submit" class="btn btn-primary" name="mod" value="answer_right">Modificar</button>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
             <div class="form-group">
               <button type="submit" class="btn btn-primary" name="new">Nueva pregunta</button>
               <button type="submit" class="btn btn-primary" name="mod" value="all">Sobreescribir todo</button>
               <button type="reset" class="btn btn-primary">Limpiar</button>
             </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
-          <?php OpenPlotCenterMd(12); ?>
+          <?php Parts::OpenPlotCenterMd(12); ?>
           <div class="row">
             <div class="col">
               <?= $save ?>
             </div>
           </div>
-          <?php ClosePlotCenterMd(); ?>
+          <?php Parts::ClosePlotCenterMd(); ?>
 
 
         </form>
       </section>
     </main>
-    <?php footer_of(); ?>
+    <?php Parts::footer_of(); ?>
   </body>
 </html>

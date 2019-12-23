@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<?php include_once("./php/parts.php") ?>
-<?php include_once("./php/rank_functions.php") ?>
+<?php include_once("./php/model/parts.php") ?>
+<?php include_once("./php/model/rank_functions.php") ?>
 <?php $tittle="Ranking"; ?>
 <html lang="es" dir="ltr">
   <head>
-    <?php head_of() ?>
+    <?php Parts::head_of() ?>
     <title><?php echo $tittle;?></title>
   </head>
   <body>
-    <?php header_of($tittle) ?>
+    <?php Parts::header_of($tittle) ?>
     <main class="container">
       <section class="RANKING">
-        <?php OpenPlotCenterMd(12) ?>
+        <?php Parts::penPlotCenterMd(12) ?>
         <div class="table-responsive-sm">
           <table class="table table-hover table-primary">
             <thead>
@@ -23,13 +23,13 @@
               </tr>
             </thead>
             <tbody>
-              <?php showRankAll($cases); ?>
+              <?php RankTools::getInstance()->showRankAll(); ?>
             </tbody>
           </table>
         </div>
-        <?php ClosePlotCenterMd() ?>
+        <?php Parts::ClosePlotCenterMd() ?>
       </section>
     </main>
-    <?php footer_of(); ?>
+    <?php Parts::footer_of(); ?>
   </body>
 </html>

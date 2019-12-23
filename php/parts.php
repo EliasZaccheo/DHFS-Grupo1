@@ -1,5 +1,11 @@
 <?php
-  function header_of($tittle){ //SAQUE EL ENLACE DE CONTACTO!!!!... 05/12... PORQUE ERA LO MISMO QUE FAQ
+
+class Parts{
+
+  private function __construct(){
+  }
+
+  public static function header_of($tittle){ //SAQUE EL ENLACE DE CONTACTO!!!!... 05/12... PORQUE ERA LO MISMO QUE FAQ
     echo '
       <header>
         <a name="top-page"></a>    <!-- Ancla tope de página -->
@@ -33,7 +39,7 @@
     ';
   }
 
-  function footer_of(){
+  public static function footer_of(){
     echo '
       <a name="foot-page"></a>    <!-- Ancla pie de página -->
       <footer>
@@ -57,7 +63,7 @@
       </footer>';
     }
 
-  function head_of(){
+  public static function head_of(){
     echo '
 
       <!-- https://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
@@ -77,7 +83,7 @@
   }
 
 
-  function OpenPlotCenterMd($col){
+  public static function OpenPlotCenterMd($col){
     echo '
     <div class="row justify-content-md-center">
       <div class=';
@@ -85,9 +91,10 @@
     echo '">';
   }
 
-  function closePlotCenterMd(){
+  public static function closePlotCenterMd(){
     echo '
       </div>
     </div>';
   }
+}
 ?>

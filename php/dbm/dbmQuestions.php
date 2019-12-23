@@ -1,13 +1,14 @@
 <?php
-include_once('dbm.php');
-include_once('dbmUsers.php');
+include_once('./dbm.php');
+include_once('./dbmUsers.php');
+include_once('../entities/question.php');
 
 /*  Singleton class
 * Opera con el Alta, Baja y Modificación de objetos 'Rank'.
 * Almacena en formato objeto.
 */
 class DBMQuestions extends DataBaseManager{
-  private const SOURCE='././json/questions.json';
+  private const SOURCE='../../json/questions.json';
   private $instance=null;
 
   private function __construct(){
@@ -15,8 +16,8 @@ class DBMQuestions extends DataBaseManager{
   }
 
   public function getInstance(){
-    if (!self::$instance instanceof DBMQuestions)
-      self::$instance=new self();
+    if (!self::$instance instanceof DBMQuestions){
+      self::$instance=new self();}
     return self::$instance;
   }
 
@@ -96,14 +97,13 @@ class DBMQuestions extends DataBaseManager{
     }
   }
 
-  /* Crea y añade un objeto Question a partir de un arreglo
-  * con los campos 'question', 'answer_n' (n:[1..4]) y 'answer_right'.
+  /* Añade un objeto Question a la memoria secundaria
   * Retorna el identificador designado de esta pregunta
   */
-  function addQuestion($question){
+  public function addQuestion($question){
     if ($question){
       $questions=parent::getSourceDecode();
-      $questions[]=new Question($question["category"],$question["level"],$question["question"],$question["answer_1"],$question["answer_2"],$question["answer_3"],$question["answer_4"],$question["answer_right"]);
+      $questions[]=$question;
       parent::setSourceEncode($questions);
       return count($questions)-1;
     }else{

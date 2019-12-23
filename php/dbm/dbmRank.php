@@ -1,13 +1,13 @@
 <?php
-include_once('dbm.php');
-include_once('dbmUsers.php');
+include_once('./dbm.php');
+include_once('./dbmUsers.php');
 
 /*  Singleton class
 * Opera con el Alta, Baja y Modificación de objetos 'Rank'.
 * Almacena en formato objeto.
 */
 class DBMRank extends DataBaseManager{
-  private const SOURCE='././json/ranking.json';
+  private const SOURCE='../../json/rankingv2.json';
   private $instance=null;
 
   private function __construct(){
@@ -15,8 +15,8 @@ class DBMRank extends DataBaseManager{
   }
 
   public function getInstance(){
-    if (!self::$instance instanceof DBMUsers)
-      self::$instance=new self();
+    if (!self::$instance instanceof DBMUsers){
+      self::$instance=new self();}
     return self::$instance;
   }
 

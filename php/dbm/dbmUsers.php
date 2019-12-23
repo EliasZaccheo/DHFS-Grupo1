@@ -3,7 +3,7 @@ include_once('dbm.php');
 
 /*  Singleton class */
 class DBMUsers extends DataBaseManager{
-  private const SOURCE='./json/users.json';
+  private const SOURCE='../../json/users.json';
   private const DEFAULT_IMG= 'img/usersProfiles/unknown.png';
   private $instance=null;
 
