@@ -19,7 +19,7 @@ class Question
 * Un entero entre 0 y 3
 */
   public function __construct($category,$level,$question,$answer_1,$answer_2,$answer_3,$answer_4,$answer_right){
-    $this->id=DBMQuestions.getInstance()->getElemensCount();
+    $this->id=DBMQuestions::getInstance()->getElemensCount();
     $this->category=$category;
     $this->level=$level;
     $this->question=$question;

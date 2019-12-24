@@ -7,11 +7,11 @@ include_once('./php/dbm/dbmUsers.php');
 * Almacena en formato objeto.
 */
 class DBMRank extends DataBaseManager{
-  private const SOURCE='../../json/rankingv2.json';
-  private $instance=null;
+  private const SOURCE='./json/rankingv2.json';
+  private static $instance=null;
 
   private function __construct(){
-    parent::__construct(SOURCE);
+    $this->__construct(self::SOURCE);
   }
 
   public function getInstance(){
@@ -24,7 +24,7 @@ class DBMRank extends DataBaseManager{
   * Retorna null si no lo encuentra
   */
   private function seekRankByEmail($email){
-    $source=parent::getSourceDecode();
+    $source=$this->getSourceDecode();
     foreach ($source as $key => $value) {
       if ($value->getEmail()==$email){
         return $key;
@@ -37,7 +37,7 @@ class DBMRank extends DataBaseManager{
   * Retorna null si no lo encuentra
   */
   private function getRankByEmail($email){
-    $source=parent::getSourceDecode();
+    $source=$this->getSourceDecode();
     foreach ($source as $key => $value) {
       if ($value->getEmail()==$email){
         return $value;
@@ -50,7 +50,7 @@ class DBMRank extends DataBaseManager{
   * Retorna null si no lo encuentra
   */
   private function deleteRankByEmail($email){
-    $source=parent::getSourceDecode();
+    $source=$this->getSourceDecode();
     foreach ($source as $key => $value) {
       if ($value->getEmail()==$email){
 
@@ -63,27 +63,27 @@ class DBMRank extends DataBaseManager{
   */
   public function saveRanking($rank){
     $elemento=seekRankByEmail($rank->getEmail());
-    $source=parent::getSourceDecode();
+    $source=$this->getSourceDecode();
     if ($elemento!==null){
       $source[$elemento]=$rank;
     }else{
       $source[]=$rank;
     }
-    parent::setSourceEncode($source);
+    $this->setSourceEncode($source);
   }
 
   /* Salva en memoria secundaria el puntaje de un jugador en una categoría específica
   */
   public function saveScore($score,$category,$user){
     $elemento=$this->seekRankByEmail($rank->getEmail());
-    $source=parent::getSourceDecode();
+    $source=$this->getSourceDecode();
     if ($elemento!==null){
       $source[$elemento]->setScore($score,$category);
     }else{
       $source[] = new Rank(); // Añade un nuevo elemento rank
       $source[count($source)-1]->setScore($score,$category); //Aumenta el puntaje de la categoría correspondiente
     }
-    parent::setSourceEncode($source);
+    $this->setSourceEncode($source);
   }
 }
 

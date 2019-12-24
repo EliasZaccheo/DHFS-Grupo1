@@ -11,14 +11,12 @@ abstract class DataBaseManager
 
 /*  Sobre escribe la fuente con el dato enviado. Codifica antes de escribir. */
   public function setSourceEncode($request){
-    global $source;
-    file_put_contents($source,json_encode($request));
+    file_put_contents($this->source,json_encode($request));
   }
 
 /*  Decodifica y retorna el contenido de la fuente*/
   public function getSourceDecode(){
-    global $source;
-    $fileOpen = file_get_contents($source);
+    $fileOpen = file_get_contents($this->source);
     if ($fileOpen){
       $answer = json_decode($fileOpen);}
     else{

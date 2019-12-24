@@ -6,7 +6,8 @@
 //}
 include_once("./php/model/parts.php");
 include_once("./php/dbm/dbmQuestions.php");
-include_once("./php/entities/Question.php");
+include_once("./php/entities/question.php");
+include_once('./permissionManager.php');
 
 $tittle="Administración - ABM";
 
@@ -150,7 +151,7 @@ if ($_POST) {
             <div class="col">
               <label for="category">Categoria</label>
               <select name="category" id="category" class="form-control" required>
-                <?php foreach ($categories as $cat) {
+                <?php foreach (PermissionManager::getInstance()->getCategories() as $cat) {
                   if ($cat==$qCategory) {
                     echo '<option value ="' . $cat . '" selected>' . $cat . '</option>';
                   }else{

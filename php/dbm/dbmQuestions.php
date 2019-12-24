@@ -8,11 +8,11 @@ include_once('./php/entities/question.php');
 * Almacena en formato objeto.
 */
 class DBMQuestions extends DataBaseManager{
-  private const SOURCE='../../json/questionsv1.json';
-  private $instance=null;
+  private const SOURCE='./json/questionsv1.json';
+  private static $instance=null;
 
   private function __construct(){
-    parent::__construct(SOURCE);
+    parent::__construct(self::SOURCE);
   }
 
   public function getInstance(){
@@ -23,8 +23,8 @@ class DBMQuestions extends DataBaseManager{
 
   // Busca y retorna un objeto Question por su identificador
   public function getQuestionById($questionId){
-    $questions=parent::getSourceDecode();
-    if (count($questions)>=$questionId){
+    $questions=$this->getSourceDecode();
+    if (count($questions)>$questionId){
       return $questions[$questionId];
     }
     return null;
@@ -32,7 +32,7 @@ class DBMQuestions extends DataBaseManager{
 
   // Busca y retorna un arreglo de Question de la categoria enviada por parámetro
   public function getQuestionsByCategory($category){
-    $questions=parent::getSourceDecode();
+    $questions=$this->getSourceDecode();
     if (count($questions)>=$questionId){
       $ret=[];
       foreach ($questions as $question) {
@@ -90,9 +90,9 @@ class DBMQuestions extends DataBaseManager{
     if ($this->getQuestionById($questionId)===null){
       return false;
     }else{
-      $questions=parent::getSourceDecode();
+      $questions=$this->getSourceDecode();
       $questions[$questionId]=$question;
-      parent::setSourceEncode($questions);
+      $this->setSourceEncode($questions);
       return true;
     }
   }
@@ -102,9 +102,9 @@ class DBMQuestions extends DataBaseManager{
   */
   public function addQuestion($question){
     if ($question){
-      $questions=parent::getSourceDecode();
+      $questions=$this->getSourceDecode();
       $questions[]=$question;
-      parent::setSourceEncode($questions);
+      $this->setSourceEncode($questions);
       return count($questions)-1;
     }else{
       return 0;
