@@ -5,6 +5,16 @@ include_once("./php/abm-users.php");
 include_once("./php/register_functions.php");
 $tittle="Registro";
 
+//conexion a base de datos
+$dsn='mysql:dbname=wise_db;host=localhost';
+$db_user='root';
+$db_pass='';
+$db=new PDO($dsn,$db_user,$db_pass);
+
+$sql=$db->prepare("INSERT INTO users(id, name, birthday, email, password) 
+VALUES (:nombre, :birth, :email, :pass)");
+
+
 $username = null;
 $userbirth = null;
 $email=null;
@@ -20,18 +30,29 @@ if ($_POST){
       checkbirth($_POST["user-birth"]) &&
       passwordValidate($_POST["passwordCreate"],$_POST["passwordConfirm"])
     ){
-    $user=[
+      
+     
+      $sql->bindParam(':nombre',$_POST["nombre"]);
+      $sql->bindParam(':birth',$_POST["user-birth"]);
+      $sql->bindParam(':email',$_POST["email"]);
+      $sql->bindParam(':pass',password_hash($_POST["passwordCreate"],PASSWORD_DEFAULT));
+      $sql->execute();
+     
+      $user=[
       "username" => $_POST["username"],
       "email" => $_POST["email"],
       "user-birth" => $_POST["user-birth"],
       "password" => password_hash($_POST["passwordCreate"],PASSWORD_DEFAULT)
     ];
+  
+  
     if (validateImg("profile-image")) {
       $user["profile-image"]=uploadImage("profile-image" ,$user["username"]);
     }else{
       $user["profile-image"]=$defaultimg;
     }
     if (addUser($user)){
+      
       header('Location: login.php');
       exit;
     }
@@ -43,6 +64,7 @@ if ($_POST){
 }
 
 ?>
+<!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
     <?php head_of() ?>
